@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <link href="{{url_for('static',filename='css/styles.css')}}" rel="stylesheet">
+      <title>Web Application to predict the Right Label of Honey</title>
+      <link rel="icon" href="static/images/machine-learning.png" type="image/icon type">
+   </head>
+   <body>
+      <ul class="tabs">
+         {% if  honey_label ==null and sample_data==null%}
+         <li data-tab-target="#About" class="active tab">About me</li>
+         <li data-tab-target="#Project" class="tab">Project Details</li>
+         <li data-tab-target="#Instructions" class="tab">Instructions</li>
+         <li data-tab-target="#Honey" class="tab">Prediction</li>
+         {% else %}
+         <li data-tab-target="#About" class="tab">About me</li>
+         <li data-tab-target="#Project" class="tab">Project Details</li>
+         <li data-tab-target="#Instructions" class="tab">Instructions</li>
+         <li data-tab-target="#Honey" class="active tab">Prediction</li>
+         {% endif %}
+      </ul>
+      <div class="tab-content">
+      {% if  honey_label ==null and sample_data==null%}
+      <div id="About" data-tab-content class="active">
+      {% else %}
+      <div id="About" data-tab-content>
+         {% endif %}    
+         <h2 style="font-family:verdana;">
+         Dushyant Nayak</h1>
+         <br> <img src="{{url_for('static',filename='images/dushyant.jpg')}}" rel="image" > <br>  <br><br> 
+         <em>
+            <br><br>
+            <br><br> <br>  <a href="https://www.linkedin.com/in/dushyant-nayak-1b13128?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BncGUR8nJTimmkc7Plt%2Bn9w%3D%3D"> My Linkedin </a>
+            <br> 
+            <br><b > Current Company :</b>Amazon
+            <br> <b>Previous Company :</b> Oracle
+            <br> <b>Current Role :</b> Cloud Database Engineer
+            <br>   <b> Skills :    </b> Cloud Computing - AWS(Amazon Web Services) | OCI (Oracle Cloud Infrastructure), Python, Pandas, NumPy, Data Science, Machine Learning, Database - PostgreSQL | Oracle
+            <br> <b>Industry Experience:</b>  17 Years  
+            <br> <b>Roles:</b> Software Development Manager, Software Development Engineer, Database Application engineer, Cloud Architect, Cloud Database Engineer, ERP Consultant
+            <br> <b> Certifications : </b> <br>
+            <ul >
+               <ol>Oracle R12 Payables Certified Specialist</ol>
+               <ol>Oracle Linux Certified Implementation Specialist</ol>
+               <ol>Oracle Database 11g Administrator Certified Associate</ol>
+               <ol>Oracle Weblogic Implementation specialist</ol>
+               <ol>Oracle Cloud Infrastructure Foundation</ol>
+               <ol>Oracle Cloud Infrastructure Architect Associate</ol>
+            </ul>
+            <b>EDUCATION</b> <br>
+            <br>Eastern University, Philadelphia, United States — Master’s in science (Data Science- Pursuing)
+            <br> <sup>Oct 2020 - Present</sup>
+            <br> Bhoj University, Bhopal, India — Master’s in computer application
+            <br> <sup>Jul 2002 - Jun 2005</sup>
+            <br> Makhanlal Chaturvedi University, Bhopal, India — Bachelor of Computer Applications
+            <br> <sup>Jul 1997 - May 2000 </sup>
+         </em>
+      </div>
+      <div id="Project" data-tab-content>
+         <h2 style="font-family:verdana;">Project Details</h2>
+         <p> <em>
+            <br> In this project Honey Datasets <mark>(honeydata.csv) </mark>, which is collected by food authenticity investigation organisation that uses infrared (NIR) spectroscopy,
+            <br> is analyzed and prediction is made to tag the right label of the sample. Label shows if sample is pure or adulterated.
+            <br><br> NIRS produces data of chemical bonding within the food item and every food item produces different wavelengths.
+            <br>The characteristics of transflectance spectra recorded over a variety of wavelengths make up the NIR datasets.
+            <br><br>More details about NIRS can be found in <a href="https://en.wikipedia.org/wiki/Near-infrared_spectroscopy"> Wikipedia </a>
+            <br><br> This project is developed as part of Data Science(MS) program by <a href="https://www.eastern.edu/"> Eastern University (St. Davids, Pennsylvania) </a>
+            </em>
+            <br><br>
+         <h2 style="font-family:verdana;">Data/File Source</h2>
+         <br><br><br><br><br><br><br><br><br><br><br><br><br> <br><br><b>Contributors:
+         <br><br> Student: Dushyant Nayak
+         <br>   Mentor : Tamrat Belay, Jake Bodet </b>
+         </p>
+      </div>
+      <div id="Instructions" data-tab-content>
+         <h2 style="font-family:verdana;">Instructions to use the Web Application </h2>
+         <br><br>   
+         <p>
+            <em>
+               Dataset File honeydata.csv file has datasets collected by food authenticity investigation organisation kept at GIT Hub Repository <br>
+               Sampe Data which is going to be used to predict the label is existing in the server, data is stored after performing preprocessing mechenisms.<br>
+               Origianl Dataset has over 700 columns but using dimension reduction mechenism columns are extracted to three new columns<br>
+               New data will be in below format<br>
+               <br><br>
+         <table border="1">
+         <tr>
+         <th>Col1</th>
+         <th>Col2</th>
+         <th>Col3</th>
+         <th>Target</th>
+         </tr>
+         <tr>
+         <td>--</td>
+         <td>--</td>
+         <td>--</td>
+         <td>--</td>
+         </tr> 
+         </table>
+         <br><br>
+         Steps to run prediction
+         <ul > 
+         <ol>Navigate to Prediction tab</ol>
+         <ol>Select the algorithm to be applied for prediction</ol>
+         <ol>Click on Show Data button, data will be picked randomly from the extracted columns data. System will randomy pick the row.</ol>
+         <ol>Click on the Predict</ol>
+         <ol>If prediction is accurate, <b>Predicted Honey Label: Predicted label</b> is displayed in green color otherwise in red color.</ol>
+         </ul>
+         </p> </em>
+      </div>
+      {% if  honey_label ==null and sample_data ==null%}
+      <div id="Honey" data-tab-content >
+         {% else %}
+         <div id="Honey" data-tab-content class="active">
+            {% endif %}    
+            <h1>Predict</h1>
+            <p>Step 1 - Choose the ML Algorithms from the list to Preprocess and Predict </p>
+            <form action="{{ url_for('showHoney')}} "method="post" id="Algo-form">
+               <select name="Algo">
+                  <option value="PCALDA" selected> PCALDA </option>
+                  <option value="PCAQDA"> PCAQDA </option>
+                  <option value="TSNELDA"> TSNELDA </option>
+                  <option value="TSNEQDA"> TSNEQDA </option>
+                  {% if selected_algo != null %}
+                  <option value="{{ selected_algo }}" selected > {{ selected_algo }}</option>
+                  {% endif %} 
+               </select>
+               <br><br>  
+               <p>Step 2 - Pick honey sample record to evaluate and predict the Label </p>
+               <button type="submit" class="Dushbtn">Show Data</button>
+            </form>
+            <br><br>
+            <form action="{{ url_for('predict')}} "method="post" id="predict-label">
+               <div align="left">
+                  <table>
+                     <h1>
+                        <!--Populating honey record in HTML table-->
+                        {% for row in sample_data %}
+                        <h2>{{fields[loop.index]}}</h2>
+                        {{ row|safe }}
+                        {% endfor %}     
+                     </h1>
+                  </table>
+               </div>
+               <br><br>
+               <p>Step 3 - Click on Predict to see prediction </p>
+               <button type="submit" class="Dushbtn">Predict</button>  
+            </form>
+            <br> <br>
+            {% if honey_label == null %}   
+            {% else %}
+            {% if accuracy == 1 %}   
+            <H3 style="color:Green;"> {{ honey_label }} </H3>
+            {% else %}
+            <H3 style="color:Red;"> {{ honey_label }} </H3>
+            {% endif %} 
+            {% endif %} 
+            <br>
+            <b>Terms: </b><br><br>
+            <b>Preprocessing:</b> Principal Component Analyses (PCA), t-distributed stochastic neighbor embedding (TSNE)<br>
+            <b>Model Algorithm:</b>  Linear Discriminant Analysis (LDA), Quadratic Discriminant Analysis (QDA)<br>
+         </div>
+         <br>
+      </div>
+   </body>
+   <!-- Using Javascript to handle the tab events, 
+      I had to use this after html body because it didn't work in flask application when script was insode HTML body -->
+   <script src="{{url_for('static',filename='js/script.js')}}"></script>
+</html>

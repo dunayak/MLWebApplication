@@ -1,0 +1,41 @@
+
+## Deploying ML Model using Flask
+This is a university project to demonstrate the Machine Learning model using Flask API
+
+### Prerequisites
+You must have Pandas, Scikit Learn and Flask (for API) installed.
+
+Flask version: 0.12.2
+conda install flask=0.12.2  (or) pip install Flask==0.12.2
+
+### Project Structure
+This project has four major parts :
+1. mlmodel.py - This contains code for Machine Learning model to predict the right label of the honey sample.
+2. webapp.py - This contains Flask APIs that accepts the rdata file made of honey samples collected by food authenticity investigations that use infrared (NIR) spectroscopy
+3. template - This contains the HTML template (index.html), which shows about information/ project details and also allows user to upload the dataset and choose to predict.
+
+4. static - There is a css folder under this and which has a style.css file which is being used in index.html file as styling template.
+
+### Step to run the project
+1. Make sure to navigate to the project home directory. 
+Create the machine learning model by executing below command from terminal/ command prompt 
+```
+python mlmodel.py
+```
+This would create a model into a file mlmodel.pkl
+
+2. Run webapp.py using below command to start Flask API
+```
+python webapp.py
+```
+By default, flask will run on port 5000.
+
+3. Navigate to URL http://127.0.0.1:5000/ (or) http://localhost:5000
+
+You should be able to view the homepage.
+
+- After going through the information pages, please navigate to Prediction tab
+-
+
+If everything goes well, you should  be able to see the predcited salary vaule on the HTML page!
+check the output here: http://127.0.0.1:5000/predict
