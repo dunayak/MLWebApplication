@@ -8,7 +8,7 @@
 
   body {
 
-	background-image: url('static/eastern.png');
+	background-image: url('static/easternlogo.png');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: 21%;
@@ -32,8 +32,7 @@
 
   }
 
-  
-  .tab {
+ .tab {
 	cursor: pointer;
 	padding: 15px;
   }
@@ -52,10 +51,11 @@
 	margin-left: 30px;
 	margin-right:30px;
   }
-  img{width: 100px;
-	  border-radius: 55px;
-	  float: left;
+ img{width: 100px;
+   border-radius: 55px;
+   float: left;
 }
+ 
 p {
   font-size:16px; 
   color:rgb(0, 0, 0);
@@ -89,5 +89,4 @@ li {
 	position:relative;
 	top:1px;
 }
-
 

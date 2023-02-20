@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <link href="{{url_for('static',filename='css/styles.css')}}" rel="stylesheet">
-      <title>Web Application to predict the Right Label of Honey</title>
+      <title>Web Application to Predict Honey Label</title>
       <link rel="icon" href="static/images/machine-learning.png" type="image/icon type">
    </head>
    <body>
@@ -106,7 +106,7 @@
          </tr> 
          </table>
          <br><br>
-         Steps to run prediction
+         <h3>Steps to run prediction :</h3>
          <ul > 
          <ol>Navigate to Prediction tab</ol>
          <ol>Select the algorithm to be applied for prediction</ol>
@@ -114,7 +114,39 @@
          <ol>Click on the Predict</ol>
          <ol>If prediction is accurate, <b>Predicted Honey Label: Predicted label</b> is displayed in green color otherwise in red color.</ol>
          </ul>
-         </p> </em>
+         <br>
+
+<h3>Based on the comparative analysis among the various Algorithms, below are the best performing Algorithms, hence will be used in prediction</h3>
+<table border="1">
+   <tr>
+   <th>Algorithm</th>
+   <th>Accuracy</th>
+   </tr>
+   <tr>
+      <td>LDA with PCA Accuracy</td>
+      <td>77.08%</td>
+   </tr> 
+
+   <tr>
+      <td>QDA with PCA Accuracy</td>
+      <td>85.42%</td>
+         
+      </tr> 
+
+   <tr>
+      <td>KNN with PCA Accuracy</td>
+      <td>91.67%</td>
+            
+      </tr> 
+      <tr>
+         <td>SVM with PCA Accuracy</td>
+         <td>89.58%</td>
+               
+         </tr> 
+
+</table>
+
+      </p> </em>
       </div>
       {% if  honey_label ==null and sample_data ==null%}
       <div id="Honey" data-tab-content >
@@ -127,8 +159,8 @@
                <select name="Algo">
                   <option value="PCALDA" selected> PCALDA </option>
                   <option value="PCAQDA"> PCAQDA </option>
-                  <option value="TSNELDA"> TSNELDA </option>
-                  <option value="TSNEQDA"> TSNEQDA </option>
+                  <option value="PCAKNN"> PCAKNN </option>
+                  <option value="PCASVM"> PCASVM </option>
                   {% if selected_algo != null %}
                   <option value="{{ selected_algo }}" selected > {{ selected_algo }}</option>
                   {% endif %} 
@@ -164,9 +196,17 @@
             {% endif %} 
             {% endif %} 
             <br>
+            {% if honey_label != null %}
+            <h3><b> Confusion Metrix 
+            <br>
+            <iframe id="Confuse" src="{{ url_for('plot_confusion') }}?graph_file={{ graph_file }}" width="1200" height="600" style="border:none;" scrolling="no"></iframe> 
+            {% endif %} 
+            <br>
+
             <b>Terms: </b><br><br>
-            <b>Preprocessing:</b> Principal Component Analyses (PCA), t-distributed stochastic neighbor embedding (TSNE)<br>
-            <b>Model Algorithm:</b>  Linear Discriminant Analysis (LDA), Quadratic Discriminant Analysis (QDA)<br>
+            <b>Preprocessing:</b> Principal Component Analyses (PCA) <br>
+            <b>Model Algorithms:</b>  Linear Discriminant Analysis (LDA), Quadratic Discriminant Analysis (QDA), K-Nearest Neighbors (KNN) and Support Vector Machine (SVM)<br>
+
          </div>
          <br>
       </div>

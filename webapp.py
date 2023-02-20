@@ -2,7 +2,7 @@ import numpy as np
 import pickle
 import os
 import pandas as pd 
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template,send_file
 from flask_caching import Cache
 from sklearn import metrics 
 
@@ -19,9 +19,10 @@ def home():
     # Rendering index file
     return render_template('indexflask.html')
 
-# showHoney is to populate the honey sample data from preexisting file to the index page in form of HTML table
+# showHoney is to populate the honey sample data from preexisting files to the flaskindex page in form of HTML table
 @webapp.route('/showHoney',  methods=("POST", "GET"))
 def showHoney():
+    cache.clear()
     selected_algo=None
     for algo in request.form.values():
         selected_algo=algo
@@ -53,7 +54,13 @@ def predict():
     prediction = mlmodel.predict(honey_test_df)
     accuracy = metrics.accuracy_score(target, prediction)
     prediction=prediction[0]
-    return render_template('indexflask.html',sample_data=[honey_test_df_with_target.to_html()],fields=[''],selected_algo=cache.get('global_selected_algo'),accuracy=accuracy,honey_label=f'Predicted Honey Label: {prediction}')
+    graph_file=f"static/Graphs/{cache.get('global_selected_algo')}.png"
+    return render_template('indexflask.html',sample_data=[honey_test_df_with_target.to_html()],fields=[''],selected_algo=cache.get('global_selected_algo'),accuracy=accuracy,honey_label=f'Predicted Honey Label: {prediction}', graph_file=graph_file)
 
+@webapp.route('/plot_confusion')
+def plot_confusion():
+    graph_file=None
+    graph_file=f"static/Graphs/{cache.get('global_selected_algo')}.png"
+    return send_file(graph_file, mimetype='image/png')
 if __name__ == "__main__":
-    webapp.run(host='0.0.0.0', port=8080, debug=True)
+    webapp.run(host='0.0.0.0', port=80, debug=True)
