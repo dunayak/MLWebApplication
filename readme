@@ -42,16 +42,18 @@ Use the key which was used to launched the instance
 
 4- Once instance is connected run below commands in the same sequence
 
-sh prereq.sh  - This will install all softwares, open port needed to run the application
+5- git clone https://github.com/dunayak/MLWebApplication
 
-5- 
+6- cd MLWebApplication
+
+   sh ./MLWebApplication/prereq.sh  - This will install all softwares, open port needed to run the application
 
 Run webapp.py using below command to start Flask API
 
 sudo python3 webapp.py
 Application will run in port 80
 
-3. Navigate to URL http://<Public IP Address/ or public DNS>:80
+7. Navigate to URL http://<Public IP Address/ or public DNS>:80
 
 You should be able to view the homepage (About me).
 
