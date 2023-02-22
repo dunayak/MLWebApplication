@@ -12,16 +12,14 @@
       <ul class="tabs">
          {% if  honey_label ==null and sample_data==null%}
          <li data-tab-target="#About" class="active tab">About me</li>
-         <li data-tab-target="#Other" class="tab">Experience & Projects</li>
-         <li data-tab-target="#Project" class="tab">Project Details</li>
-         <li data-tab-target="#Instructions" class="tab">Instructions</li>
-         <li data-tab-target="#Honey" class="tab">Prediction</li>
+         <li data-tab-target="#Other" class="tab">Professional Experience & Projects</li>
+         <li data-tab-target="#Project" class="tab">Machine Learning Project Details</li>
+         <li data-tab-target="#Honey" class="tab">Prediction App</li>
          {% else %}
          <li data-tab-target="#About" class="tab">About me</li>
-         <li data-tab-target="#Other" class="tab">Other Projects</li>
-         <li data-tab-target="#Project" class="tab">Project Details</li>      
-         <li data-tab-target="#Instructions" class="tab">Instructions</li>
-         <li data-tab-target="#Honey" class="active tab">Prediction</li>
+         <li data-tab-target="#Other" class="tab">Professional Experience & Projects</li>
+         <li data-tab-target="#Project" class="tab">Machine Learning Project Details</li>      
+         <li data-tab-target="#Honey" class="active tab">Prediction App</li>
          {% endif %}
       </ul>
       <div class="tab-content">
@@ -53,7 +51,7 @@
                <ol>Oracle Cloud Infrastructure Architect Associate</ol>
             </ul>
             <b>EDUCATION</b> <br>
-            <br>Eastern University, Philadelphia, United States — Master’s in science (Data Science- Pursuing)
+            <br>Eastern University, St. Davids, Pennsylvania, United States — Master’s in science (Data Science- Pursuing)
             <br> <sup>Oct 2020 - Present</sup>
             <br> Bhoj University, Bhopal, India — Master’s in computer application
             <br> <sup>Jul 2002 - Jun 2005</sup>
@@ -73,7 +71,11 @@
       </div>
 
       <div id="Project" data-tab-content>
-         <h2 style="font-family:verdana;">Project Details </h2><br> <h3>Capstone: Applied Data Science (DTSC-691-80)</h3> 
+         <h2 style="font-family:verdana;">Project Details </h2><br> <h3>Capstone: Applied Data Science (DTSC-691-80)</h3> <br>
+         <b>Contributors:
+         <br><br> Student: Dushyant Nayak
+         <br>   Mentor : Tamrat Belay
+         <br>   Course Coordinator: Jake Bodet </b>
          <p> <em>
             <br> In this project Honey Datasets <mark>(honeydata.csv) </mark>, which is collected by food authenticity investigation organisation that uses infrared (NIR) spectroscopy,
             <br> is analyzed and prediction is made to tag the right label of the sample. Label shows if sample is pure or adulterated.
@@ -84,20 +86,14 @@
             <br><br> This is the program details <a href="https://www.eastern.edu/academics/colleges-seminary/college-health-and-sciences/departments/department-mathematical-5"> Data Science MS Program</a>
             </em>
             <br><br>
-         <h2 style="font-family:verdana;">Data/Code Source</h2>
-         <br><br>
-          
+         <h3 style="font-family:verdana;">Data/Code Source</h2>
+         <br>
           <a href="https://github.com/dunayak/MLWebApplication" target="_blank"> Application Code </a><br>
-          
-          
-         <br><br><br><br><br><br><br><br> <br><br><b>Contributors:
-         <br><br> Student: Dushyant Nayak
-         <br>   Mentor : Tamrat Belay, Jake Bodet </b>
+         
          </p>
-      </div>
-      <div id="Instructions" data-tab-content>
-         <h2 style="font-family:verdana;">Instructions to use the Web Application </h2>
-         <br><br>   
+ <br>
+         <h3 style="font-family:verdana;">Instructions to use the Web Application </h2>
+         <br>   
          <p>
             <em>
                Dataset File honeydata.csv file has datasets collected by food authenticity investigation organisation kept at GIT Hub Repository <br>
@@ -165,6 +161,8 @@
 
 </table>
 
+<br><br><br><br>
+
       </p> </em>
       </div>
       {% if  honey_label ==null and sample_data ==null%}
@@ -173,7 +171,7 @@
          <div id="Honey" data-tab-content class="active">
             {% endif %}    
             <h1>Predict</h1>
-            <p>Step 1 - Choose the combination of dimension reduction technique and Machine Learning prediction Algorithm </p>
+            <p>Step 1 - Choose the combination of dimension reduction technique and Machine Learning prediction Algorithm: </p>
             <form action="{{ url_for('showHoney')}} "method="post" id="Algo-form">
                <select name="Algo">
                   <option value="PCALDA" selected> PCALDA </option>
@@ -185,7 +183,7 @@
                   {% endif %} 
                </select>
                <br><br>  
-               <p>Step 2 - Pick honey sample record to evaluate and predict the Label </p>
+               <p>Step 2 - Pick honey sample record to evaluate and predict the Label: </p>
                <button type="submit" class="Dushbtn">Show Data</button>
             </form>
             <br><br>
@@ -202,7 +200,7 @@
                   </table>
                </div>
                <br><br>
-               <p>Step 3 - Click on Predict to see prediction </p>
+               <p>Step 3 - Click on Predict to see prediction: </p>
                <button type="submit" class="Dushbtn">Predict</button>  
             </form>
             <br> <br>
