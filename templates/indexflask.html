@@ -12,7 +12,7 @@
       <ul class="tabs">
          {% if  honey_label ==null and sample_data==null%}
          <li data-tab-target="#About" class="active tab">About me</li>
-         <li data-tab-target="#Other" class="tab">Other Projects</li>
+         <li data-tab-target="#Other" class="tab">Experience & Projects</li>
          <li data-tab-target="#Project" class="tab">Project Details</li>
          <li data-tab-target="#Instructions" class="tab">Instructions</li>
          <li data-tab-target="#Honey" class="tab">Prediction</li>
@@ -64,19 +64,10 @@
       <div id="Other" data-tab-content>
          <br>
          <br>
-         <h3 style="font-family:verdana;">My professional projects </h2>  <br>
-            <br>
-         <ul>
-            <ol>Database migration between two different Cloud Accounts </ol><br>
-            <ol>Application infrastructure lift and shift from onprem to Cloud Platform </ol><br>
-            <ol>Automation using Python and Shell scripting to maintain cloud resources </ol><br>
-            <ol>Fullstack application development using Oracle Application Express (Apex)</ol> <br>
 
-         </ul>
-         <br><br>
-         <h3 style="font-family:verdana;">Public Source</h2>
-         <br><br>
-          <a href="https://github.com/dunayak" > My Git Repository </a><br>       
+            <br>
+         <iframe src="resume.html" height="1800" width="1500" style="border:none;" title="description"></iframe>   
+
          
          </p>
       </div>
@@ -93,10 +84,10 @@
             <br><br> This is the program details <a href="https://www.eastern.edu/academics/colleges-seminary/college-health-and-sciences/departments/department-mathematical-5"> Data Science MS Program</a>
             </em>
             <br><br>
-         <h2 style="font-family:verdana;">Data/File Source</h2>
+         <h2 style="font-family:verdana;">Data/Code Source</h2>
          <br><br>
-          <a href="https://github.com/dunayak/MLWebApplication/blob/main/honeydata.csv" > Dataset </a><br>
-          <a href="https://github.com/dunayak/MLWebApplication" > Application Code </a><br>
+          
+          <a href="https://github.com/dunayak/MLWebApplication" target="_blank"> Application Code </a><br>
           
           
          <br><br><br><br><br><br><br><br> <br><br><b>Contributors:
@@ -129,14 +120,19 @@
          </tr> 
          </table>
          <br><br>
+         <h4>* Objective is to apply the Machine learning model, which was generated using pickle, to the dataset and run the prediction.
+         <br>   
          <h3>Steps to run prediction :</h3>
          <ul > 
          <ol>Navigate to Prediction tab</ol>
-         <ol>Select the algorithm to be applied for prediction</ol>
-         <ol>Click on Show Data button, data will be picked randomly from the extracted columns data. System will randomy pick the row.</ol>
-         <ol>Click on the Predict</ol>
+         <ol>Choose the combination of dimension reduction technique and Machine Learning prediction Algorithm- Only best performing combination of dimension reduction and Machine Learning prediction algorithms are included in UI.</ol>
+         <ol>Click on Show Data button - Test data is created using 80:20 split is stored in the server, clicking on this button will pick one row from the test data and show it to user in the screen.</ol>
+         <ol>Click on the Predict - This will apply prediction on the row returned from previous step.</ol>
+         <br>
          <ol>If prediction is accurate, <b>Predicted Honey Label: Predicted label</b> is displayed in green color otherwise in red color.</ol>
          </ul>
+
+         <h4>* In addition to that, Prediction tab will also show the confusion matrix of whole test data set.
          <br>
 
 <h3>Based on the comparative analysis among the various Algorithms, below are the best performing Algorithms, hence will be used in prediction</h3>
@@ -177,7 +173,7 @@
          <div id="Honey" data-tab-content class="active">
             {% endif %}    
             <h1>Predict</h1>
-            <p>Step 1 - Choose the ML Algorithms from the list to Preprocess and Predict </p>
+            <p>Step 1 - Choose the combination of dimension reduction technique and Machine Learning prediction Algorithm </p>
             <form action="{{ url_for('showHoney')}} "method="post" id="Algo-form">
                <select name="Algo">
                   <option value="PCALDA" selected> PCALDA </option>

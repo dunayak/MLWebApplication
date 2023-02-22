@@ -19,6 +19,10 @@ def home():
     # Rendering index file
     return render_template('indexflask.html')
 
+@webapp.route('/resume.html')
+def resume():
+    return render_template('resume.html')
+
 # showHoney is to populate the honey sample data from preexisting files to the flaskindex page in form of HTML table
 @webapp.route('/showHoney',  methods=("POST", "GET"))
 def showHoney():
