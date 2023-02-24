@@ -20,6 +20,8 @@ sudo pip3 install -U scikit-learn scipy matplotlib
 echo "scikit-learn installed"
 sudo pip3 install pandas
 echo "pandas installed"
+sudo pip3 install xgboost
+echo "xgboost installed"
 sudo pip3 install flask_caching
 echo "flask caching installed"
 

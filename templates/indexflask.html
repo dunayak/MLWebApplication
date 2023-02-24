@@ -10,7 +10,7 @@
    </head>
    <body>
       <ul class="tabs">
-         {% if  honey_label ==null and sample_data==null%}
+         {% if  honey_label ==null and sample_data==null and honeydata==null %}
          <li data-tab-target="#About" class="active tab">About me</li>
          <li data-tab-target="#Other" class="tab">Professional Experience & Projects</li>
          <li data-tab-target="#Project" class="tab">Machine Learning Project Details</li>
@@ -23,13 +23,13 @@
          {% endif %}
       </ul>
       <div class="tab-content">
-      {% if  honey_label ==null and sample_data==null%}
+      {% if  honey_label ==null and sample_data==null and honeydata==null %}
       <div id="About" data-tab-content class="active">
       {% else %}
       <div id="About" data-tab-content>
          {% endif %}    
          <h2 style="font-family:verdana;">
-         Dushyant Nayak</h1>
+         Dushyant Nayak</h2>
          <br> <img src="{{url_for('static',filename='images/dushyant.jpg')}}" rel="image" > <br>  <br><br> 
          <em>
             <br><br>
@@ -67,7 +67,7 @@
          <iframe src="resume.html" height="1800" width="1500" style="border:none;" title="description"></iframe>   
 
          
-         </p>
+
       </div>
 
       <div id="Project" data-tab-content>
@@ -86,13 +86,14 @@
             <br><br> This is the program details <a href="https://www.eastern.edu/academics/colleges-seminary/college-health-and-sciences/departments/department-mathematical-5"> Data Science MS Program</a>
             </em>
             <br><br>
-         <h3 style="font-family:verdana;">Data/Code Source</h2>
+         </p>
+         <h3 style="font-family:verdana;">Data/Code Source</h3>
          <br>
           <a href="https://github.com/dunayak/MLWebApplication" target="_blank"> Application Code </a><br>
          
-         </p>
+
  <br>
-         <h3 style="font-family:verdana;">Instructions to use the Web Application </h2>
+         <h3 style="font-family:verdana;">Instructions to use the Web Application </h3>
          <br>   
          <p>
             <em>
@@ -118,20 +119,38 @@
          <br><br>
          <h4>* Objective is to apply the Machine learning model, which was generated using pickle, to the dataset and run the prediction.
          <br>   
-         <h3>Steps to run prediction :</h3>
-         <ul > 
-         <ol>Navigate to Prediction tab</ol>
-         <ol>Choose the combination of dimension reduction technique and Machine Learning prediction Algorithm- Only best performing combination of dimension reduction and Machine Learning prediction algorithms are included in UI.</ol>
-         <ol>Click on Show Data button - Test data is created using 80:20 split is stored in the server, clicking on this button will pick one row from the test data and show it to user in the screen.</ol>
-         <ol>Click on the Predict - This will apply prediction on the row returned from previous step.</ol>
+         <h3>Steps to run prediction :</h3><br>
+         <ul> 
+         <ol><b>Navigate to Prediction tab</b></ol><br>
+
+         <ol><b>Step 1-</b> Pick honey sample record(s) by clicking on any of below bottons :</ol><br>
+         <ul> 
+         <ol><b>Show All Button-</b> Will populate all test datasets and User will need to enter an index to select a record for processing.</ol>
+         <ul>
+            <ol>
+               If user selects a row index which is not in range shown in the UI, 0th row will be picked by system.
+            </ol>
+         </ul>   
+         <ol><b>Show Random Button-</b> Will pupulate a random record from the test datasets for processing.</ol><br>
+         <ol><b>** Test data is created using 80:20 split and is stored in the server in the form of csv file.</b></ol><br>
+
+         </ul> 
+         <ol><b>Step 2-</b> Choose the combination of dimension reduction technique and Machine Learning prediction Algorithm. </ol>
+         <ul><br>
+         <ol> Only best performing combination of dimension reduction and Machine Learning prediction algorithms are included in UI.</ol>
+         </ul><br>
+         <ol><b>Step 3-</b> Click on the Predict button - This will apply prediction on the row returned/selected from previous step.</ol>
+
          <br>
+         <ul>
          <ol>If prediction is accurate, <b>Predicted Honey Label: Predicted label</b> is displayed in green color otherwise in red color.</ol>
+         </ul>
          </ul>
 
          <h4>* In addition to that, Prediction tab will also show the confusion matrix of whole test data set.
          <br>
 
-<h3>Based on the comparative analysis among the various Algorithms, below are the best performing Algorithms, hence will be used in prediction</h3>
+<h3>Based on the comparative analysis among the various Algorithms, below are the best performing Algorithms, hence will be used in prediction.</h3>
 <table border="1">
    <tr>
    <th>Algorithm</th>
@@ -160,19 +179,92 @@
          </tr> 
 
 </table>
-
+</div>
 <br><br><br><br>
 
-      </p> </em>
-      </div>
-      {% if  honey_label ==null and sample_data ==null%}
-      <div id="Honey" data-tab-content >
-         {% else %}
+
+      {% if  honey_label ==null and sample_data ==null and honeydata==null %}
+         <div id="Honey" data-tab-content >
+      {% else %}
          <div id="Honey" data-tab-content class="active">
-            {% endif %}    
+      {% endif %}    
             <h1>Predict</h1>
-            <p>Step 1 - Choose the combination of dimension reduction technique and Machine Learning prediction Algorithm: </p>
-            <form action="{{ url_for('showHoney')}} "method="post" id="Algo-form">
+
+            <form action="{{ url_for('showHoney')}} "method="post" id="Random-form">
+               <ul>
+               <ol><b>Step 1-</b> Pick honey sample record(s) by clicking on any of below bottons :</ol><br>
+                  <ul> 
+                     <ol><b>Show All Button-</b> Will populate all test datasets and User will need to enter an index to select a record for processing.</ol><br>
+                  <ul>
+               <ol>
+                     If user selects a row index which is not in range shown in the UI, 0th row will be picked by system.
+                  </ol>
+               </ul>   
+               <ol><b><br>Show Random Button-</b> Will pupulate a random record from the test datasets for processing.</ol><br>
+
+               <button type="submit" class="Dushbtn">Show Random Record</button>
+               {% if random %}
+
+               <div align="left">
+                  <table>
+                     <h1>
+                        <!-- Populating honey record in HTML table -->
+                        {% for row in sample_data %}
+                        <h2>{{fields[loop.index]}}</h2>
+                        {{ row|safe }}
+                        {% endfor %}     
+                     </h1>
+                  </table>
+               </div>
+               {% else %}
+               {% endif %} 
+            </form>
+            <form action="{{ url_for('showRows')}} "method="post" id="All-form">
+
+               <br> 
+               <button type="submit" class="Dushbtn">Show All Test Data Set</button>
+            </form><br> 
+            <div>
+               <table id="honeyTable">
+
+                     {% for ind in honeydata %}
+                  <tr>
+                     <td>{{features[loop.index]}} </td>
+                     {{ ind | safe}}
+                  </tr>
+                     {% endfor %}
+
+               </table>
+            </div>
+            <br><br>
+
+            <form action="{{ url_for('predict')}} "method="post" id="predict-label">
+               {% if honeydata != null %}
+               <h3><b>  
+               <label for="Sample">Please Enter row id to predict (between 0-95) :</label>
+               <input type="text" id="rowid" name="rowid" maxlength="2">                
+               <p> Please note if values is not in the range system will show 0th index row</p>
+               {% endif %} 
+               <br><br>
+               {% if random %}
+
+               {% else %}
+
+               <div align="left">
+                  <table>
+                     <h1>
+                        <!-- Populating honey record in HTML table -->
+                        {% for row in sample_data %}
+                        <h2>{{fields[loop.index]}}</h2>
+                        {{ row|safe }}
+                        {% endfor %}     
+                     </h1>
+                  </table>
+               </div>
+               {% endif %} 
+               <br><br>
+               <b>Step 2-</b> Choose the combination of dimension reduction technique and Machine Learning prediction Algorithm. 
+               <br><br>
                <select name="Algo">
                   <option value="PCALDA" selected> PCALDA </option>
                   <option value="PCAQDA"> PCAQDA </option>
@@ -182,27 +274,22 @@
                   <option value="{{ selected_algo }}" selected > {{ selected_algo }}</option>
                   {% endif %} 
                </select>
-               <br><br>  
-               <p>Step 2 - Pick honey sample record to evaluate and predict the Label: </p>
-               <button type="submit" class="Dushbtn">Show Data</button>
-            </form>
-            <br><br>
-            <form action="{{ url_for('predict')}} "method="post" id="predict-label">
-               <div align="left">
-                  <table>
-                     <h1>
-                        <!--Populating honey record in HTML table-->
-                        {% for row in sample_data %}
-                        <h2>{{fields[loop.index]}}</h2>
-                        {{ row|safe }}
-                        {% endfor %}     
-                     </h1>
-                  </table>
-               </div>
-               <br><br>
-               <p>Step 3 - Click on Predict to see prediction: </p>
+               
+
+               <br> <br>
+               <p><b>Step 3-</b>- Click on Predict to see prediction: </p>
+
+
+
+               {% if rowid == null and honeydata == null and sample_data==null%}
+               <button type="submit" disabled>Predict</button>
+               {% else %}
                <button type="submit" class="Dushbtn">Predict</button>  
+               {% endif %} 
+
             </form>
+
+
             <br> <br>
             {% if honey_label == null %}   
             {% else %}
@@ -216,7 +303,8 @@
             {% if honey_label != null %}
             <h3><b> Confusion Metrix 
             <br>
-            <iframe id="Confuse" src="{{ url_for('plot_confusion') }}?graph_file={{ graph_file }}" width="1200" height="600" style="border:none;" scrolling="no"></iframe> 
+            <iframe id="Confuse" src="{{ url_for('plot_confusion') }}?graph_file={{ graph_file }}" width="1200" height="600" style="border:none;" scrolling="no"></iframe>
+               
             {% endif %} 
             <br>
 
@@ -224,11 +312,11 @@
             <b>Preprocessing:</b> Principal Component Analyses (PCA) <br>
             <b>Model Algorithms:</b>  Linear Discriminant Analysis (LDA), Quadratic Discriminant Analysis (QDA), K-Nearest Neighbors (KNN) and Support Vector Machine (SVM)<br>
 
-         </div>
          <br>
-      </div>
+         </div>
+      <br><br><br>
    </body>
    <!-- Using Javascript to handle the tab events, 
-      I had to use this after html body because it didn't work in flask application when script was insode HTML body -->
+      I had to use this after html body because it didn't work in flask application when script was inside HTML body -->
    <script src="{{url_for('static',filename='js/script.js')}}"></script>
 </html>
