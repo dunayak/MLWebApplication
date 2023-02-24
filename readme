@@ -45,7 +45,7 @@ Use the key which was used to launched the instance
 
 7- Run below command to run CreateModels.py file, this file will apply the dimension reduction technique (PCA) to the train/ test dataset and fit the training dataset to the various models and create the model files using pickle in static/Models. This will also create a confusion matrix and the same image to the static/Graphs directory.
 
-   python3 CreateModels.py
+   python3 CreateModels.py      --> This is Optional Step as all files are already created using git clone and will be stored in Server.
 
 8-Run webapp.py using below command to start Flask API
 
