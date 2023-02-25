@@ -10,20 +10,22 @@
    </head>
    <body>
       <ul class="tabs">
-         {% if  honey_label ==null and sample_data==null and honeydata==null %}
+         {% if  honey_label ==null and sample_data==null and honeydata==null and perform_matrix==null and show_pred_app==null%}
          <li data-tab-target="#About" class="active tab">About me</li>
          <li data-tab-target="#Other" class="tab">Professional Experience & Projects</li>
          <li data-tab-target="#Project" class="tab">Machine Learning Project Details</li>
          <li data-tab-target="#Honey" class="tab">Prediction App</li>
+
          {% else %}
          <li data-tab-target="#About" class="tab">About me</li>
          <li data-tab-target="#Other" class="tab">Professional Experience & Projects</li>
          <li data-tab-target="#Project" class="tab">Machine Learning Project Details</li>      
          <li data-tab-target="#Honey" class="active tab">Prediction App</li>
+
          {% endif %}
       </ul>
       <div class="tab-content">
-      {% if  honey_label ==null and sample_data==null and honeydata==null %}
+      {% if  honey_label ==null and sample_data==null and honeydata==null and perform_matrix==null and show_pred_app==null%}
       <div id="About" data-tab-content class="active">
       {% else %}
       <div id="About" data-tab-content>
@@ -63,7 +65,8 @@
          <br>
          <br>
 
-            <br>
+         <br>
+
          <iframe src="resume.html" height="1800" width="1500" style="border:none;" title="description"></iframe>   
 
          
@@ -123,6 +126,10 @@
          <ul> 
          <ol><b>Navigate to Prediction tab</b></ol><br>
 
+         <b> Option 1 : Scan whole test Dataset</b> <br>
+         <ul><ol> This will load the raw csv file and feed it to ML processing </ol> </ul>
+         <b> Option 2 : Predict One Row</b> <br>
+            <ul><ol> This will process one row and predict using ML </ol> </ul> <br>
          <ol><b>Step 1-</b> Pick honey sample record(s) by clicking on any of below bottons :</ol><br>
          <ul> 
          <ol><b>Show All Button-</b> Will populate all test datasets and User will need to enter an index to select a record for processing.</ol>
@@ -183,15 +190,65 @@
 <br><br><br><br>
 
 
-      {% if  honey_label ==null and sample_data ==null and honeydata==null %}
+      {% if  honey_label ==null and sample_data ==null and honeydata==null and perform_matrix==null and show_pred_app==null %}
          <div id="Honey" data-tab-content >
       {% else %}
          <div id="Honey" data-tab-content class="active">
       {% endif %}    
-            <h1>Predict</h1>
+            <h1>Predict</h1> <br>
 
+            <h1>Option 1 : Scan whole test Dataset </h1>
+            <form action="{{ url_for('loaddata') }}" method = "POST" enctype = "multipart/form-data">
+               <label for="file">Browse Honey Sample Data File:</label>
+           <input type="file" name="file">
+
+           <button class="Dushbtn" >Upload Honey Sample Test Dataset</button>
+           {% if  outcome !=null %}
+           <H3 style="color:Green;"> File {{outcome}} </H3>
+           {% else %}
+           {% endif %} 
+           
+      <br><br><br>
+           </form>
+           <form action="{{ url_for('processTest')}} "method="post" id="Random-form">
+            <br>        
+
+            {% if  show_pred_app !=null %}
+
+            <button type="submit" class="Dushbtn">Process Dataset</button>   
+            {% else %}
+            <button type="submit" class="Dushbtn" disabled>Process Dataset</button>
+            {% endif %} 
+            </form>
+
+
+            {% if  perform_matrix !=null %}
+            <H3 style="color:Green;"> Performance Matrix </H3>
+            {% else %}
+            {% endif %} 
+            <div align="left">
+               <table>
+                  <h1>
+                     <!-- Populating Performance Matrix in HTML table -->
+                     {% for row in perform_matrix %}
+                     <h2>{{fields[loop.index]}}</h2>
+                     {{ row|safe }}
+                     {% endfor %}     
+                  </h1>
+               </table>
+  
+               <br>
+               {% if perform_matrix != null %}
+               <iframe id="Confuse" src="{{ url_for('knn_confusion') }}?graph_file={{ knngraph_file }}" width="1200" height="600" style="border:none;" scrolling="no"></iframe>
+               {% endif %} 
+            </div>
+
+            <br>
+           <h1>Option 2: Predict One Row </h1>
             <form action="{{ url_for('showHoney')}} "method="post" id="Random-form">
-               <ul>
+
+
+            <ul>
                <ol><b>Step 1-</b> Pick honey sample record(s) by clicking on any of below bottons :</ol><br>
                   <ul> 
                      <ol><b>Show All Button-</b> Will populate all test datasets and User will need to enter an index to select a record for processing.</ol><br>
@@ -282,7 +339,7 @@
 
 
                {% if rowid == null and honeydata == null and sample_data==null%}
-               <button type="submit" disabled>Predict</button>
+               <button type="submit" class="Dushbtn" disabled>Predict</button>
                {% else %}
                <button type="submit" class="Dushbtn">Predict</button>  
                {% endif %} 
@@ -313,7 +370,7 @@
             <b>Model Algorithms:</b>  Linear Discriminant Analysis (LDA), Quadratic Discriminant Analysis (QDA), K-Nearest Neighbors (KNN) and Support Vector Machine (SVM)<br>
 
          <br>
-         </div>
+
       <br><br><br>
    </body>
    <!-- Using Javascript to handle the tab events, 
