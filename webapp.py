@@ -103,7 +103,8 @@ def loaddata():
         filename = honeyfile.filename
 
         print('Honeydata',filename)
-        honeyfile.save(os.path.join(filename))
+        honeyfile.save(os.path.join(webapp.config['UPLOAD_FOLDER'],filename))
+        print (f"webapp.config['UPLOAD_FOLDER']) {webapp.config['UPLOAD_FOLDER']}")
         show_pred_app=True
         cache.set('testcsv_file_name',filename)
         return render_template('indexflask.html',outcome='Uploaded',show_pred_app=show_pred_app)

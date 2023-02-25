@@ -50,6 +50,8 @@ Use the key which was used to launched the instance
 8-Run webapp.py using below command to start Flask API
 
 sudo python3 webapp.py
+(or run below to keep the app running in background
+ nohup python3 server.py &)
 Application will run in port 80
 
 7. Navigate to URL http://ec2-18-207-112-63.compute-1.amazonaws.com:80
